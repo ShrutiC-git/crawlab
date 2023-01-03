@@ -54,7 +54,7 @@ services:
     # volumes:
     #   - "/opt/crawlab/mongo/data/db:/data/db"  # persistent mongo data
 
-  nginx:
-    image: nginx:alpine
-    volumes:
-      - ./nginx-uffizzi:/etc/nginx
+  # nginx:
+  #   image: nginx:alpine
+  #   volumes:
+  #     - ./nginx-uffizzi:/etc/nginx
