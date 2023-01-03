@@ -27,25 +27,25 @@ services:
             limits:
               memory: 1000M
 
-  # worker01:
-  #   image: "${CRAWLAB_IMAGE}"
-  #   command: /bin/bash -c "/dist/crawlab worker"
-  #   environment:
-  #     CRAWLAB_NODE_MASTER: "N"
-  #     CRAWLAB_NODE_NAME: "Worker Node 01"
-  #     CRAWLAB_GRPC_ADDRESS: "http://localhost:9666"
-  #     CRAWLAB_FS_FILER_URL: "http://localhost:8080/api/filer"
-  #     CRAWLAB_LOG_LEVEL: debug
-  #   volumes:
-  #     - ./backend:/backend
-  #     - ./backend/go.mod.local:/backend/go.mod
-  #     - .:/libs/crawlab-team
-  #   deploy:
-  #         resources:
-  #           limits:
-  #             memory: 1000M
-    # depends_on:
-    #   - master
+  worker01:
+    image: "${CRAWLAB_IMAGE}"
+    # command: /bin/bash -c "/dist/crawlab worker"
+    environment:
+      CRAWLAB_NODE_MASTER: "N"
+      CRAWLAB_NODE_NAME: "Worker Node 01"
+      CRAWLAB_GRPC_ADDRESS: "http://localhost:9666"
+      CRAWLAB_FS_FILER_URL: "http://localhost:8080/api/filer"
+      CRAWLAB_LOG_LEVEL: debug
+    # volumes:
+    #   - ./backend:/backend
+    #   - ./backend/go.mod.local:/backend/go.mod
+    #   - .:/libs/crawlab-team
+    deploy:
+          resources:
+            limits:
+              memory: 1000M
+    depends_on:
+      - master
 
   mongo:
     image: mongo:4.2
