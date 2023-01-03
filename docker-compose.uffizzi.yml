@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 
 # uffizzi integration
 x-uffizzi:
@@ -9,10 +9,10 @@ x-uffizzi:
 services:
 
   master:
-    image: "${CRAWLAB_IMAGE}"
-    command: /bin/bash -c "/bin/docker-start-master.sh && /dist/crawlab master"
+    image: crawlabteam/crawlab
+    # command: /bin/bash -c "/bin/docker-start-master.sh && /dist/crawlab master"
     environment:
-      CRAWLAB_API_ADDRESS: “http://localhost:8000"
+      # CRAWLAB_API_ADDRESS: “http://localhost:8000"
       CRAWLAB_NODE_MASTER: "Y"
       CRAWLAB_MONGO_HOST: "localhost"  # mongo host address. In the docker compose network, directly refer to the service name
       CRAWLAB_MONGO_PORT: "27017"  # mongo port
@@ -21,7 +21,6 @@ services:
       CRAWLAB_MONGO_PASSWORD: "password"  # mongo password
     ports:
       - "8080:8080"
-      - "8000:8000"
       - "9666:9666"
     deploy:
           resources:
