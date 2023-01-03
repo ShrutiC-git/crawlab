@@ -8,7 +8,7 @@ x-uffizzi:
 
 services:
 
-  :
+  master:
     image: "${CRAWLAB_IMAGE}"
     command: /bin/bash -c "/bin/docker-start-master.sh && /dist/crawlab master"
     environment:
@@ -32,7 +32,7 @@ services:
     environment:
       CRAWLAB_NODE_MASTER: "N"
       CRAWLAB_NODE_NAME: "Worker Node 01"
-      # CRAWLAB_GRPC_ADDRESS: "http://localhost:9666"
+      CRAWLAB_GRPC_ADDRESS: "http://localhost:9666"
       CRAWLAB_FS_FILER_URL: "http://localhost:8080/api/filer"
       CRAWLAB_LOG_LEVEL: debug
     volumes:
