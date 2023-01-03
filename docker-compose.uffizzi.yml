@@ -9,7 +9,7 @@ x-uffizzi:
 services:
 
   master:
-    image: crawlabteam/crawlab
+    image: "${CRAWLAB_IMAGE}"
     # command: /bin/bash -c "/bin/docker-start-master.sh && /dist/crawlab master"
     environment:
       # CRAWLAB_API_ADDRESS: “http://localhost:8000"
