@@ -10,7 +10,7 @@ services:
 
   master:
     image: "${CRAWLAB_IMAGE}"
-    command: /bin/bash -c "rm -f /backend/dist/crawlab && go build -o ./dist/crawlab ./"
+    # command: /bin/bash -c "rm -f /backend/dist/crawlab && go build -o ./dist/crawlab ./"
     environment:
       # CRAWLAB_API_ADDRESS: “http://localhost:8000"
       CRAWLAB_NODE_MASTER: "Y"
