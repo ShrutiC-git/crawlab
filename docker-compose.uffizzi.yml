@@ -8,9 +8,9 @@ x-uffizzi:
 
 services:
 
-  crawl:
+  :
     image: "${CRAWLAB_IMAGE}"
-    command: /bin/bash -c "rm -f /backend/dist/crawlab && go build -o ./dist/crawlab ./"
+    command: /bin/bash -c "/bin/docker-start-master.sh && /dist/crawlab master"
     environment:
       CRAWLAB_NODE_MASTER: "Y"
       CRAWLAB_MONGO_HOST: "localhost"  # mongo host address. In the docker compose network, directly refer to the service name
@@ -24,7 +24,7 @@ services:
     deploy:
           resources:
             limits:
-              memory: 2000M
+              memory: 1000M
 
   worker01:
     image: "${CRAWLAB_IMAGE}"
@@ -39,6 +39,10 @@ services:
       - ./backend:/backend
       - ./backend/go.mod.local:/backend/go.mod
       - .:/libs/crawlab-team
+    deploy:
+          resources:
+            limits:
+              memory: 1000M
     # depends_on:
     #   - master
 
