@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./workspace/dockerfiles/golang
-          file: .workspace/dockerfiles/golang/Dockerfile
+          file: ./workspace/dockerfiles/golang/Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           push: true
