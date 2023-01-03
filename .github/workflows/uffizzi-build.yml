@@ -55,6 +55,7 @@ jobs:
         run: |
           CRAWLAB_IMAGE=${{ needs.build-crawlab.outputs.tags }}
           export CRAWLAB_IMAGE
+          UFFIZZI_URL=\$UFFIZZI_URL
           # Render simple template from environment variables.
           envsubst < docker-compose.uffizzi.yml > docker-compose.rendered.yml
           cat docker-compose.rendered.yml
