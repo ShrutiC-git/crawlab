@@ -26,7 +26,6 @@ services:
           resources:
             limits:
               memory: 1000M
-
   # worker01:
   #   image: "${CRAWLAB_IMAGE}"
   #   # command: /bin/bash -c "/dist/crawlab worker"
