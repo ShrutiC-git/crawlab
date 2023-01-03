@@ -22,6 +22,7 @@ services:
     ports:
       - "8080:8080"
       - "9666:9666"
+      - "8000:8000"
     deploy:
           resources:
             limits:
