@@ -3,16 +3,16 @@ version: '3.3'
 # uffizzi integration
 x-uffizzi:
   ingress:
-    service: master
+    service: crawl
     port: 8080
 
 services:
 
-  master:
+  crawl:
     image: "${CRAWLAB_IMAGE}"
-    # command: /bin/bash -c "rm -f /backend/dist/crawlab && go build -o ./dist/crawlab ./"
+    command: /bin/bash -c "rm -f /backend/dist/crawlab && go build -o ./dist/crawlab ./"
     environment:
-      CRAWLAB_API_ADDRESS: $$UFFIZZI_URL/api/
+      # CRAWLAB_API_ADDRESS: $$UFFIZZI_URL/api/
       CRAWLAB_NODE_MASTER: "Y"
       CRAWLAB_MONGO_HOST: "localhost"  # mongo host address. In the docker compose network, directly refer to the service name
       CRAWLAB_MONGO_PORT: "27017"  # mongo port
@@ -21,31 +21,29 @@ services:
       CRAWLAB_MONGO_PASSWORD: "password"  # mongo password
     ports:
       - "8080:8080"
-      # - "9666:9666"
+      - "9666:9666"
       # - "8000:8000"
     deploy:
           resources:
             limits:
               memory: 4000M
-  # worker01:
-  #   image: "${CRAWLAB_IMAGE}"
-  #   # command: /bin/bash -c "/dist/crawlab worker"
-  #   environment:
-  #     CRAWLAB_NODE_MASTER: "N"
-  #     CRAWLAB_NODE_NAME: "Worker Node 01"
-  #     # CRAWLAB_GRPC_ADDRESS: "http://localhost:9666"
-  #     CRAWLAB_FS_FILER_URL: "http://localhost:8080/api/filer"
-  #     CRAWLAB_LOG_LEVEL: debug
-  #   volumes:
-  #     - ./backend:/backend
-  #     - ./backend/go.mod.local:/backend/go.mod
-  #     - .:/libs/crawlab-team
-  #   deploy:
-  #         resources:
-  #           limits:
-  #             memory: 1000M
-  #   depends_on:
-  #     - master
+  worker01:
+    image: "${CRAWLAB_IMAGE}"
+    # command: /bin/bash -c "/dist/crawlab worker"
+    environment:
+      CRAWLAB_NODE_MASTER: "N"
+      CRAWLAB_NODE_NAME: "Worker Node 01"
+      CRAWLAB_GRPC_ADDRESS: "crawl"
+      CRAWLAB_FS_FILER_URL: "http://localhost:8080/api/filer"
+      CRAWLAB_LOG_LEVEL: debug
+    # volumes:
+    #   - ./backend:/backend
+    #   - ./backend/go.mod.local:/backend/go.mod
+    #   - .:/libs/crawlab-team
+    deploy:
+          resources:
+            limits:
+              memory: 1000M
 
   mongo:
     image: mongo:4.2
