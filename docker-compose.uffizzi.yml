@@ -35,10 +35,10 @@ services:
       # CRAWLAB_GRPC_ADDRESS: "crawl"
       CRAWLAB_FS_FILER_URL: "http://localhost:8080/api/filer"
       CRAWLAB_LOG_LEVEL: debug
-    volumes:
-      - ./backend:/backend
-      - ./backend/go.mod.local:/backend/go.mod
-      - .:/libs/crawlab-team
+    # volumes:
+    #   - ./backend:/backend
+    #   - ./backend/go.mod.local:/backend/go.mod
+    #   - .:/libs/crawlab-team
     # depends_on:
     #   - master
 
