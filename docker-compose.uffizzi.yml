@@ -18,9 +18,11 @@ services:
       CRAWLAB_MONGO_DB: "crawlab"  # mongo database
       CRAWLAB_MONGO_USERNAME: "username"  # mongo username
       CRAWLAB_MONGO_PASSWORD: "password"  # mongo password
+    volumes:
+      - "/opt/crawlab/master:/data"
     ports:
       - "8080:8080"
-      # - "9666:9666"
+      - "9666:9666"
     deploy:
           resources:
             limits:
@@ -32,6 +34,7 @@ services:
     environment:
       CRAWLAB_NODE_MASTER: "N"
       CRAWLAB_NODE_NAME: "Worker Node 01"
+      CRAWLAB_GRPC_ADDRESS: "http://localhost:9666"
       # CRAWLAB_GRPC_ADDRESS: "crawl"
       CRAWLAB_FS_FILER_URL: "http://localhost:8080/api/filer"
       CRAWLAB_LOG_LEVEL: debug
