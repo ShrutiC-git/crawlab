@@ -11,6 +11,7 @@ services:
   crawl:
     image: "${CRAWLAB_IMAGE}"
     # command: /bin/bash -c "rm -f /backend/dist/crawlab && go build -o ./dist/crawlab ./"
+    command: "export VUE_APP_API_BASE_URL=http://localhost:8081"
     environment:
       CRAWLAB_NODE_MASTER: "Y"
       CRAWLAB_MONGO_HOST: "localhost"  # mongo host address. In the docker compose network, directly refer to the service name
