@@ -28,7 +28,7 @@ services:
 
   worker01:
     image: "${CRAWLAB_IMAGE}"
-    command: /bin/bash -c "/dist/crawlab worker"
+    # command: /bin/bash -c "/dist/crawlab worker"
     environment:
       CRAWLAB_NODE_MASTER: "N"
       CRAWLAB_NODE_NAME: "Worker Node 01"
