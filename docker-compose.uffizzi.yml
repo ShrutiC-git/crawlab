@@ -11,7 +11,6 @@ services:
   crawl:
     image: "${CRAWLAB_IMAGE}"
     # command: /bin/bash -c "rm -f /backend/dist/crawlab && go build -o ./dist/crawlab ./"
-    command: /bin/sh -c "export VUE_APP_API_BASE_URL=http://localhost:8081"
     environment:
       CRAWLAB_NODE_MASTER: "Y"
       CRAWLAB_MONGO_HOST: "localhost"  # mongo host address. In the docker compose network, directly refer to the service name
@@ -22,6 +21,7 @@ services:
     ports:
       - "8080:8080"
       - "9666:9666"
+      - "8000:8000"
     deploy:
           resources:
             limits:
@@ -33,15 +33,14 @@ services:
     environment:
       CRAWLAB_NODE_MASTER: "N"
       CRAWLAB_NODE_NAME: "Worker Node 01"
-      CRAWLAB_GRPC_ADDRESS: "crawl"
+      # CRAWLAB_GRPC_ADDRESS: "crawl"
       CRAWLAB_FS_FILER_URL: "http://localhost:8080/api/filer"
       CRAWLAB_LOG_LEVEL: debug
     # volumes:
     #   - ./backend:/backend
     #   - ./backend/go.mod.local:/backend/go.mod
       # - .:/libs/crawlab-team
-    depends_on:
-      - master
+
 
   mongo:
     image: mongo:4.2
